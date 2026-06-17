@@ -12,7 +12,8 @@
     "lint:staged": "git diff --diff-filter=d --cached --name-only | grep -E '\\.(ts|js)$' | xargs eslint",
     "format:staged": "git diff --diff-filter=d --cached --name-only | grep -E '\\.ts$' | xargs prettier --write",
     "type-check": "tsc --noEmit",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "generate:api": "orval"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
