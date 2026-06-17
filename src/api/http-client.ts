@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig } from "axios";
 import { getAuthControllerRefreshTokenUrl } from "./generated/auth";
-import { routes } from "@/constants/routes.constants";
+import { ROUTE } from "@/constants/routes.constants";
 
 export const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -87,7 +87,7 @@ apiClient.interceptors.response.use(
       clearAccessToken();
 
       if (typeof window !== "undefined") {
-        window.location.href = routes.login;
+        window.location.href = ROUTE.LOGIN;
       }
 
       return Promise.reject(refreshError);
