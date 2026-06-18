@@ -1,11 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { InfiniteScrollTrigger } from "@/components/ui/infinite-scroll-trigger";
 import { ProductSortOrder } from "@/features/products/constants/product.constants";
 import { useProductsFilters } from "@/features/products/hooks/use-products-filters";
-import { useProductsList } from "@/features/products/hooks/use-products-list";
+import { useProductsInfiniteList } from "@/features/products/hooks/use-products-infinite-list";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
-import { RotateCcw } from "lucide-react";
+import { Loader2, RotateCcw } from "lucide-react";
 import { ProductGrid } from "./product-grid";
 import { ProductGridSkeleton } from "./product-grid-skeleton";
 import { ProductToolbar } from "./product-toolbar";
@@ -27,7 +28,7 @@ export function ProductsSection() {
 
   const debouncedSearch = useDebouncedValue(search);
 
-  const { products, isLoading, isError } = useProductsList({
+  const { products, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, isError } = useProductsInfiniteList({
     search: debouncedSearch,
     sortBy,
     sortOrder,
@@ -41,12 +42,12 @@ export function ProductsSection() {
     setSorting(newSortBy, newSortOrder);
   };
 
-  if (isError) {
+  if (isError && !products.length) {
     return <ErrorState onRetry={() => window.location.reload()} />;
   }
 
   return (
-    <section className="py-8 w-ful">
+    <section className="py-8 w-auto">
       <div className="mb-6">
         <h2 className="text-2xl font-bold tracking-tight text-foreground">Products</h2>
         <p className="mt-1 text-sm text-muted-foreground">Discover our latest collection</p>
@@ -61,7 +62,19 @@ export function ProductsSection() {
         onReset={resetFilters}
       />
 
-      {isLoading ? <ProductGridSkeleton /> : <ProductGrid products={products} />}
+      {isLoading ? (
+        <ProductGridSkeleton />
+      ) : (
+        <>
+          <ProductGrid products={products} />
+          {isFetchingNextPage && (
+            <div className="flex justify-center py-6">
+              <Loader2 className="size-6 animate-spin text-muted-foreground" />
+            </div>
+          )}
+          <InfiniteScrollTrigger enabled={hasNextPage} loading={isFetchingNextPage} onLoadMore={fetchNextPage} />
+        </>
+      )}
     </section>
   );
 }

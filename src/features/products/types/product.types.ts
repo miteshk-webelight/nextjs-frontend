@@ -41,3 +41,13 @@ export type ProductFiltersState = {
   sortBy: string;
   sortOrder: ProductSortOrder;
 };
+
+export type UseProductsInfiniteListReturn = {
+  products: Product[];
+  isLoading: boolean;
+  isFetchingNextPage: boolean;
+  fetchNextPage: () => Promise<unknown>;
+  hasNextPage: boolean;
+  isError: boolean;
+  error: Error | null;
+};
