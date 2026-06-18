@@ -1,6 +1,6 @@
 import type { ProductPublicResponse } from "@/api/generated/models";
-import type { Product } from "../types/product.types";
-import { PLACEHOLDER_IMAGE } from "../constants/product.constants";
+import type { Product } from "@/features/products/types/product.types";
+import { PLACEHOLDER_IMAGE } from "@/features/products/constants/product.constants";
 
 export function mapProduct(apiProduct: ProductPublicResponse): Product {
   return {

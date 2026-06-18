@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { ShoppingCart } from "lucide-react";
-import type { Product } from "../types/product.types";
-import { getProductImageUrl, formatPrice } from "../utils/product.utils";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { PLACEHOLDER_IMAGE } from "../constants/product.constants";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { PLACEHOLDER_IMAGE } from "@/features/products/constants/product.constants";
+import type { Product } from "@/features/products/types/product.types";
+import { formatPrice, getProductImageUrl } from "@/features/products/utils/product.utils";
+import { ShoppingCart } from "lucide-react";
+import Image from "next/image";
 
 type ProductCardProps = {
   product: Product;

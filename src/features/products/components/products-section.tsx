@@ -1,9 +1,9 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
-import { useProductsList } from "../hooks/use-products-list";
-import { ProductGrid } from "./product-grid";
 import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
+import { useProductsList } from "@/features/products/hooks/use-products-list";
+import { ProductGrid } from "./product-grid";
 import { ProductGridSkeleton } from "./product-grid-skeleton";
 
 function ErrorState({ onRetry }: Readonly<{ onRetry: () => void }>) {

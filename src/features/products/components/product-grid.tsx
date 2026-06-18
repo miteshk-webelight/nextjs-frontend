@@ -1,4 +1,4 @@
-import type { Product } from "../types/product.types";
+import type { Product } from "@/features/products/types/product.types";
 import { ProductCard } from "./product-card";
 
 type ProductGridProps = {
@@ -8,7 +8,7 @@ type ProductGridProps = {
 export function ProductGrid({ products }: Readonly<ProductGridProps>) {
   if (products.length === 0) {
     return (
-      <div className="flex min-h-[200px] items-center justify-center">
+      <div className="flex min-h-50 items-center justify-center">
         <p className="text-sm text-muted-foreground">No products found.</p>
       </div>
     );
