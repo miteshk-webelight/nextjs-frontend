@@ -1,9 +1,9 @@
 "use client";
 
-import { useProductsApi } from "../api/use-products";
-import { mapProduct } from "../utils/product.utils";
-import type { UseProductsListParams, UseProductsListReturn } from "../types/product.types";
-import { PRODUCTS_LIMIT } from "../constants/product.constants";
+import { useProductsApi } from "@/features/products/api/use-products";
+import { mapProduct } from "@/features/products/utils/product.utils";
+import type { UseProductsListParams, UseProductsListReturn } from "@/features/products/types/product.types";
+import { PRODUCTS_LIMIT } from "@/features/products/constants/product.constants";
 import { ProductPublicListResponse } from "@/api/generated/models";
 
 export function useProductsList(params: UseProductsListParams = {}): UseProductsListReturn {
