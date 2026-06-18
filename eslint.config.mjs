@@ -29,6 +29,12 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-unused-vars": ["warn"],
       eqeqeq: ["error", "always"],
       "prefer-const": "error",
+      "eol-last": ["warn", "always"],
+      "no-unused-expressions": ["warn"],
+      "no-multiple-empty-lines": ["error", { max: 1 }],
+      "no-trailing-spaces": ["warn"],
+      indent: ["warn", 2],
+      semi: ["warn", "always"],
     },
   },
 
