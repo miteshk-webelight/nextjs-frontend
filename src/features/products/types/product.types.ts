@@ -21,8 +21,21 @@ export type UseProductsListParams = {
 export type UseProductsListReturn = {
   products: Product[];
   isLoading: boolean;
+  isFetching: boolean;
   isError: boolean;
   error: Error | null;
   totalPages: number;
   total: number;
+};
+
+export type ProductSortOption = {
+  label: string;
+  sortBy: string;
+  sortOrder: "ASC" | "DESC";
+};
+
+export type ProductFiltersState = {
+  search: string;
+  sortBy: string;
+  sortOrder: "ASC" | "DESC";
 };
