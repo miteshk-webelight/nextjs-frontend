@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ProductSortOrder } from "@/features/products/constants/product.constants";
 import { useProductsFilters } from "@/features/products/hooks/use-products-filters";
 import { useProductsList } from "@/features/products/hooks/use-products-list";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
@@ -22,7 +23,7 @@ function ErrorState({ onRetry }: Readonly<{ onRetry: () => void }>) {
 }
 
 export function ProductsSection() {
-  const { search, sortBy, sortOrder, setSearch, setSorting } = useProductsFilters();
+  const { search, sortBy, sortOrder, setSearch, setSorting, resetFilters } = useProductsFilters();
 
   const debouncedSearch = useDebouncedValue(search);
 
@@ -35,9 +36,8 @@ export function ProductsSection() {
   const isSearching = search !== debouncedSearch;
 
   const sortValue = `${sortBy}-${sortOrder}`;
-
   const handleSortChange = (value: string) => {
-    const [newSortBy, newSortOrder] = value.split("-") as [string, "ASC" | "DESC"];
+    const [newSortBy, newSortOrder] = value.split("-") as [string, ProductSortOrder];
     setSorting(newSortBy, newSortOrder);
   };
 
@@ -58,6 +58,7 @@ export function ProductsSection() {
         isSearching={isSearching}
         sortValue={sortValue}
         onSortChange={handleSortChange}
+        onReset={resetFilters}
       />
 
       {isLoading ? <ProductGridSkeleton /> : <ProductGrid products={products} />}

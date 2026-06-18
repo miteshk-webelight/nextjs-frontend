@@ -2,7 +2,7 @@
 
 import { DEFAULT_SORT_OPTION } from "@/features/products/constants/product.constants";
 import type { ProductFiltersState } from "@/features/products/types/product.types";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export function useProductsFilters(initial?: Partial<ProductFiltersState>) {
   const [filters, setFilters] = useState<ProductFiltersState>({
@@ -12,20 +12,22 @@ export function useProductsFilters(initial?: Partial<ProductFiltersState>) {
     ...initial,
   });
 
-  function setSearch(search: string) {
-    setFilters((prev) => ({
-      ...prev,
-      search,
-    }));
-  }
+  const setSearch = useCallback((search: string) => {
+    setFilters((prev) => ({ ...prev, search }));
+  }, []);
 
-  function setSorting(sortBy: string, sortOrder: "ASC" | "DESC") {
-    setFilters((prev) => ({
-      ...prev,
-      sortBy,
-      sortOrder,
-    }));
-  }
+  const setSorting = useCallback((sortBy: string, sortOrder: "ASC" | "DESC") => {
+    setFilters((prev) => ({ ...prev, sortBy, sortOrder }));
+  }, []);
+
+  const resetFilters = useCallback(() => {
+    setFilters({
+      search: "",
+      sortBy: DEFAULT_SORT_OPTION.sortBy,
+      sortOrder: DEFAULT_SORT_OPTION.sortOrder,
+      ...initial,
+    });
+  }, [initial]);
 
   return {
     search: filters.search,
@@ -33,5 +35,6 @@ export function useProductsFilters(initial?: Partial<ProductFiltersState>) {
     sortOrder: filters.sortOrder,
     setSearch,
     setSorting,
+    resetFilters,
   };
 }
