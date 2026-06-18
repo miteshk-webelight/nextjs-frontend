@@ -1,3 +1,5 @@
+import { ProductSortOrder } from "@/features/products/constants/product.constants";
+
 export interface Product {
   id: string;
   name: string;
@@ -14,7 +16,7 @@ export type UseProductsListParams = {
   limit?: number;
   search?: string;
   sortBy?: string;
-  sortOrder?: "ASC" | "DESC";
+  sortOrder?: ProductSortOrder;
   category?: string;
 };
 
@@ -31,11 +33,11 @@ export type UseProductsListReturn = {
 export type ProductSortOption = {
   label: string;
   sortBy: string;
-  sortOrder: "ASC" | "DESC";
+  sortOrder: ProductSortOrder;
 };
 
 export type ProductFiltersState = {
   search: string;
   sortBy: string;
-  sortOrder: "ASC" | "DESC";
+  sortOrder: ProductSortOrder;
 };
