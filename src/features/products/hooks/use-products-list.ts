@@ -1,15 +1,15 @@
 "use client";
 
-import { useProductsApi } from "@/features/products/api/use-products";
-import { mapProduct } from "@/features/products/utils/product.utils";
-import type { UseProductsListParams, UseProductsListReturn } from "@/features/products/types/product.types";
-import { PRODUCTS_LIMIT } from "@/features/products/constants/product.constants";
 import { ProductPublicListResponse } from "@/api/generated/models";
+import { useProductsApi } from "@/features/products/api/use-products";
+import { PRODUCTS_LIMIT } from "@/features/products/constants/product.constants";
+import type { UseProductsListParams, UseProductsListReturn } from "@/features/products/types/product.types";
+import { mapProduct } from "@/features/products/utils/product.utils";
 
 export function useProductsList(params: UseProductsListParams = {}): UseProductsListReturn {
-  const { page = 1, limit = PRODUCTS_LIMIT } = params;
+  const { page = 1, limit = PRODUCTS_LIMIT, search, sortBy, sortOrder } = params;
 
-  const query = useProductsApi({ page, limit });
+  const query = useProductsApi({ page, limit, search, sortBy, sortOrder });
 
   const productsData = query.data?.status === 200 ? (query.data.data as unknown as ProductPublicListResponse) : null;
 
@@ -21,6 +21,7 @@ export function useProductsList(params: UseProductsListParams = {}): UseProducts
   return {
     products,
     isLoading: query.isLoading,
+    isFetching: query.isFetching,
     isError: query.isError,
     error: query.error as Error | null,
     totalPages,

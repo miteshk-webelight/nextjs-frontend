@@ -8,7 +8,7 @@ type ProductGridProps = {
 export function ProductGrid({ products }: Readonly<ProductGridProps>) {
   if (products.length === 0) {
     return (
-      <div className="flex min-h-50 items-center justify-center">
+      <div className="flex min-h-50 items-center justify-center lg:w-315 md:w-125">
         <p className="text-sm text-muted-foreground">No products found.</p>
       </div>
     );
