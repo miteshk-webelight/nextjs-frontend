@@ -41,6 +41,7 @@ export function ProductCard({ product }: Readonly<ProductCardProps>) {
 
       <CardContent className="flex flex-1 flex-col gap-1.5 p-4">
         <p className="line-clamp-1 text-sm font-medium text-foreground">{product.name}</p>
+        <p className="line-clamp-1 text-xs font-medium text-muted-foreground">{product.description}</p>
         <div className="flex items-center gap-2">
           {product.discountPrice ? (
             <>
