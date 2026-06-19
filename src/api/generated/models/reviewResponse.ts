@@ -5,10 +5,11 @@
  * Boilerplate of NEST project Api Documentation to test and review APIs
  * OpenAPI spec version: 1.0
  */
+import type { UserInfo } from "./userInfo";
 
 export interface ReviewResponse {
   id: string;
-  userId: string;
+  user: UserInfo;
   productId: string;
   orderItemId: string;
   title: string;

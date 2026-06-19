@@ -7,6 +7,7 @@
  */
 import type { MediaResponse } from "./mediaResponse";
 import type { ProductVendorResponseStatus } from "./productVendorResponseStatus";
+import type { VendorInfo } from "./vendorInfo";
 
 export interface ProductVendorResponse {
   id: string;
@@ -21,6 +22,9 @@ export interface ProductVendorResponse {
   /** @nullable */
   discountPrice: number | null;
   media: MediaResponse[];
+  vendor: VendorInfo;
+  averageRating: number;
+  reviewCount: number;
   stock: number;
   status: ProductVendorResponseStatus;
   isActive: boolean;

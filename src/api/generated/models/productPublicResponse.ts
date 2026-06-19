@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type { MediaResponse } from "./mediaResponse";
+import type { VendorInfo } from "./vendorInfo";
 
 export interface ProductPublicResponse {
   id: string;
@@ -18,5 +19,8 @@ export interface ProductPublicResponse {
   /** @nullable */
   discountPrice: number | null;
   media: MediaResponse[];
+  vendor: VendorInfo;
+  averageRating: number;
+  reviewCount: number;
   isOutOfStock: boolean;
 }

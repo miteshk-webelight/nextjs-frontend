@@ -6,10 +6,11 @@
  * OpenAPI spec version: 1.0
  */
 import type { ReviewMedia } from "./reviewMedia";
+import type { UserInfo } from "./userInfo";
 
 export interface ReviewWithMediaResponse {
   id: string;
-  userId: string;
+  user: UserInfo;
   productId: string;
   orderItemId: string;
   title: string;
