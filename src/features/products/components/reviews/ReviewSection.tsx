@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { InfiniteScrollTrigger } from "@/components/ui/infinite-scroll-trigger";
 import { Separator } from "@/components/ui/separator";
-import { ReviewInfiniteLoader } from "@/features/products/components/reviews/ReviewInfiniteLoader";
 import { ReviewList } from "@/features/products/components/reviews/ReviewList";
 import { ReviewSort } from "@/features/products/components/reviews/ReviewSort";
 import { useProductReviews } from "@/features/products/components/reviews/hooks/use-product-reviews";
@@ -52,7 +52,7 @@ export function ReviewSection({ productId }: Readonly<ReviewSectionProps>) {
             <Loader2 className="size-5 animate-spin text-muted-foreground" />
           </div>
         )}
-        <ReviewInfiniteLoader enabled={hasNextPage} loading={isFetchingNextPage} onLoadMore={fetchNextPage} />
+        <InfiniteScrollTrigger enabled={hasNextPage} loading={isFetchingNextPage} onLoadMore={fetchNextPage} />
       </>
     );
   };
