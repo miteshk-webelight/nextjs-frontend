@@ -1,12 +1,12 @@
 "use client";
 
-import type { ProductDetail } from "@/features/products/components/detail/types";
 import { ProductActions } from "@/features/products/components/detail/product-actions";
 import { ProductDescription } from "@/features/products/components/detail/product-description";
 import { ProductPrice } from "@/features/products/components/detail/product-price";
 import { ProductQuantity } from "@/features/products/components/detail/product-quantity";
 import { ProductRating } from "@/features/products/components/detail/product-rating";
 import { ProductVendor } from "@/features/products/components/detail/product-vendor";
+import type { ProductDetail } from "@/features/products/components/detail/types";
 
 type ProductInfoProps = {
   product: ProductDetail;

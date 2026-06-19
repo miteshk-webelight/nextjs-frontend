@@ -5,6 +5,7 @@ import { ErrorState } from "@/features/products/components/detail/error-state";
 import { ProductDetailSkeleton } from "@/features/products/components/detail/product-detail-skeleton";
 import { ProductGallery } from "@/features/products/components/detail/product-gallery";
 import { ProductInfo } from "@/features/products/components/detail/product-info";
+import { ReviewSection } from "@/features/products/components/reviews/ReviewSection";
 import { useProductDetail } from "@/features/products/hooks/use-product-detail";
 
 type ProductDetailPageProps = {
@@ -27,13 +28,15 @@ export function ProductDetailPage({ productId }: Readonly<ProductDetailPageProps
   }
 
   return (
-    <div className="flex flex-col gap-12">
-      <div className="grid gap-10 md:grid-cols-2">
+    <div className="mx-auto lg:w-230 max-w-7xl flex flex-col gap-12 px-4 sm:px-6 lg:px-8 w-auto">
+      <div className="grid gap-10 md:grid-cols-2 max-sm:w-auto">
         <ProductGallery media={product.media} productName={product.name} />
         <ProductInfo product={product} />
       </div>
 
       <Separator />
+
+      <ReviewSection productId={productId} />
     </div>
   );
 }
