@@ -17,7 +17,7 @@ export function ProductCard({ product }: Readonly<ProductCardProps>) {
   const imageSrc = getProductImageUrl(product.imageUrl);
 
   return (
-    <Card className="group flex flex-col overflow-hidden">
+    <Card className="group flex flex-col overflow-hidden max-sm:w-auto w-60">
       <div className="relative aspect-square overflow-hidden bg-muted">
         {product.isOutOfStock && (
           <Badge variant="secondary" className="absolute top-3 left-3 z-10">
