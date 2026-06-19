@@ -1,6 +1,6 @@
 import type { ProductPublicResponse } from "@/api/generated/models";
-import type { Product } from "@/features/products/types/product.types";
 import { PLACEHOLDER_IMAGE } from "@/features/products/constants/product.constants";
+import type { Product } from "@/features/products/types/product.types";
 
 export function mapProduct(apiProduct: ProductPublicResponse): Product {
   return {
@@ -17,11 +17,4 @@ export function mapProduct(apiProduct: ProductPublicResponse): Product {
 
 export function getProductImageUrl(imageUrl: string | null): string {
   return imageUrl ?? PLACEHOLDER_IMAGE;
-}
-
-export function formatPrice(price: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "INR",
-  }).format(price);
 }
