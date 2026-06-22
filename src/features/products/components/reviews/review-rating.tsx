@@ -1,5 +1,3 @@
-"use client";
-
 import { VALID_RATINGS } from "@/features/products/components/reviews/constants/review.constants";
 import { StarIcon } from "lucide-react";
 

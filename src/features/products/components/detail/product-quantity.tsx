@@ -2,18 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
-import { useState } from "react";
 
 type ProductQuantityProps = {
+  quantity: number;
+  onQuantityChange: (quantity: number) => void;
   min?: number;
   max?: number;
 };
 
-export function ProductQuantity({ min = 1, max = 99 }: Readonly<ProductQuantityProps>) {
-  const [quantity, setQuantity] = useState(min);
+export function ProductQuantity({ quantity, onQuantityChange, min = 1, max = 99 }: Readonly<ProductQuantityProps>) {
+  const decrement = () => {
+    onQuantityChange(Math.max(min, quantity - 1));
+  };
 
-  const decrement = () => setQuantity((prev) => Math.max(min, prev - 1));
-  const increment = () => setQuantity((prev) => Math.min(max, prev + 1));
+  const increment = () => {
+    onQuantityChange(Math.min(max, quantity + 1));
+  };
 
   return (
     <div className="flex items-center gap-3">

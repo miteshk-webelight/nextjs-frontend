@@ -28,6 +28,7 @@ export interface ProductDetailState {
   product: ProductDetail | null;
   isLoading: boolean;
   isError: boolean;
+  errorMessage: string;
   error: Error | null;
   refetch: () => void;
 }
@@ -58,7 +59,7 @@ export interface ReviewSummary {
 
 export interface ProductReviewsState {
   reviews: Review[];
-  summary: ReviewSummary | undefined;
+  summary?: ReviewSummary;
   isLoading: boolean;
   isError: boolean;
   error: Error | null;

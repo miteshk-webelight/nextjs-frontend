@@ -1,5 +1,3 @@
-"use client";
-
 import { formatPrice } from "@/lib/utils";
 
 type ProductPriceProps = {

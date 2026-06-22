@@ -8,15 +8,13 @@ import type {
 } from "@/features/products/components/detail/types";
 
 export function mapProductDetail(apiProduct: ProductPublicResponse): ProductDetail {
-  const extended = apiProduct;
-
   const media: ProductDetailMedia[] = (apiProduct.media ?? []).slice(0, 5).map((m) => ({
     id: m.id,
     filePath: m.filePath,
   }));
 
-  const vendor: ProductDetailVendor | null = extended.vendor
-    ? { id: extended.vendor.id, storeName: extended.vendor.storeName }
+  const vendor: ProductDetailVendor | null = apiProduct.vendor
+    ? { id: apiProduct.vendor.id, storeName: apiProduct.vendor.storeName }
     : null;
 
   return {
@@ -29,8 +27,8 @@ export function mapProductDetail(apiProduct: ProductPublicResponse): ProductDeta
     media,
     isOutOfStock: apiProduct.isOutOfStock,
     vendor,
-    averageRating: extended.averageRating ?? 0,
-    reviewCount: extended.reviewCount ?? 0,
+    averageRating: apiProduct.averageRating ?? 0,
+    reviewCount: apiProduct.reviewCount ?? 0,
   };
 }
 

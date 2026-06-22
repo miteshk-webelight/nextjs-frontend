@@ -1,5 +1,3 @@
-"use client";
-
 type ProductDescriptionProps = {
   description: string | null;
 };

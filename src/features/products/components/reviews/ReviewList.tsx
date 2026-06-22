@@ -1,5 +1,3 @@
-"use client";
-
 import type { Review } from "@/features/products/components/detail/types";
 import { ReviewCard } from "@/features/products/components/reviews/review-card";
 

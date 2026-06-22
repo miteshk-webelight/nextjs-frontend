@@ -11,6 +11,7 @@ export type ReviewSortOption = {
 export type ReviewInfiniteState = {
   reviews: Review[];
   summary: ReviewSummary | undefined;
+  totalReviews: number;
   isLoading: boolean;
   isFetchingNextPage: boolean;
   fetchNextPage: () => Promise<unknown>;

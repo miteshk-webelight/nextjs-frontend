@@ -1,7 +1,6 @@
 "use client";
 
-import type { ReviewsControllerGetReviewsByProductV1Params, ReviewWithMediaResponse } from "@/api/generated/models";
-import type { ReviewSummary } from "@/features/products/components/detail/types";
+import type { ReviewsControllerGetReviewsByProductV1Params, ReviewsListResponse } from "@/api/generated/models";
 import { useReviewInfiniteApi } from "@/features/products/components/reviews/api/use-review-infinite-api";
 import { REVIEWS_LIMIT } from "@/features/products/components/reviews/constants/review.constants";
 import type { ReviewInfiniteState } from "@/features/products/components/reviews/types/review.types";
@@ -22,26 +21,44 @@ export function useProductReviews({ productId, sort, rating }: UseProductReviews
     limit: REVIEWS_LIMIT,
   });
 
-  const reviewsData = useMemo(() => {
-    if (!query.data?.pages) return [];
+  const { reviews, summary, totalReviews } = useMemo(() => {
+    if (!query.data?.pages) {
+      return {
+        reviews: [],
+        summary: undefined,
+        totalReviews: 0,
+      };
+    }
 
-    return query.data.pages.flatMap((page) => {
+    const reviews = query.data.pages.flatMap((page) => {
       if (page.status !== 200) return [];
 
-      const responseData = page.data as unknown as { data?: ReviewWithMediaResponse[] };
-      return responseData?.data ?? [];
+      return ((page.data as unknown as ReviewsListResponse).data ?? []).map(mapReview);
     });
+
+    const firstPage = query.data.pages[0];
+
+    if (firstPage?.status === 200) {
+      const pageData = firstPage.data as unknown as ReviewsListResponse;
+
+      return {
+        reviews,
+        summary: pageData.summary,
+        totalReviews: pageData.meta?.total ?? 0,
+      };
+    }
+
+    return {
+      reviews,
+      summary: undefined,
+      totalReviews: 0,
+    };
   }, [query.data]);
-
-  const reviews = useMemo(() => reviewsData.map(mapReview), [reviewsData]);
-
-  const firstPage = query.data?.pages?.[0];
-  const summary =
-    firstPage?.status === 200 ? (firstPage.data as unknown as { summary?: ReviewSummary }).summary : undefined;
 
   return {
     reviews,
     summary,
+    totalReviews,
     isLoading: query.isLoading,
     isFetchingNextPage: query.isFetchingNextPage,
     fetchNextPage: query.fetchNextPage,

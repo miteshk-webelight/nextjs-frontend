@@ -1,5 +1,3 @@
-"use client";
-
 import type { ProductDetailVendor } from "@/features/products/components/detail/types";
 
 type ProductVendorProps = {
