@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { PLACEHOLDER_IMAGE } from "@/features/products/constants/product.constants";
-import type { ProductDetailMedia } from "@/features/products/components/detail/types";
 import { ProductGalleryThumbnail } from "@/features/products/components/detail/product-gallery-thumbnail";
+import type { ProductDetailMedia } from "@/features/products/components/detail/types";
+import { PLACEHOLDER_IMAGE } from "@/features/products/constants/product.constants";
+import Image from "next/image";
+import { useState } from "react";
 
 type ProductGalleryProps = {
   media: ProductDetailMedia[];
@@ -27,7 +27,7 @@ export function ProductGallery({ media, productName }: Readonly<ProductGalleryPr
           alt={hasMedia ? `${productName} - Image ${safeIndex + 1}` : productName}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
           priority
         />
       </div>

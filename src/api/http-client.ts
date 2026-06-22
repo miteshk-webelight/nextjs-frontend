@@ -1,6 +1,7 @@
+import { HEADER_VALUES, HTTP_HEADERS } from "@/constants/headers.constants";
+import { ROUTE } from "@/constants/routes.constants";
 import axios, { AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig } from "axios";
 import { getAuthControllerRefreshTokenUrl } from "./generated/auth";
-import { ROUTE } from "@/constants/routes.constants";
 
 export const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -31,6 +32,8 @@ export const clearAccessToken = () => {
 };
 
 apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  config.headers[HTTP_HEADERS.NGROK_SKIP_BROWSER_WARNING] = HEADER_VALUES.SKIP_WARNING;
+
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
